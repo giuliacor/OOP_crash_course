@@ -1,7 +1,11 @@
 #include <iostream>
 using namespace std;
+//abstract class
+class AbstractEmployee{ //just one rule
+    virtual void askForPromotion()=0; //make the function obligatory
+};
 
-class Employee{
+class Employee:AbstractEmployee{
 private: //encapsulation
     string name;
     string company;
@@ -39,6 +43,14 @@ public:
         company = company_in;
         age = age_in;
     }
+    //implement the virtual function
+    void askForPromotion(){
+        if (age>25){
+            cout << name << " got promoted!" << endl;
+        }else{
+            cout << name << ", sorry, no promotion. " << endl;
+        }
+    }
 };
 
 int main() {
@@ -51,6 +63,11 @@ int main() {
     employee1.present_yourself();
 
     employee1.setAge(39);
-    cout << employee1.getName() << " is " << employee1.getAge() << " years old. " << endl;
+    cout << employee1.getName() << " is " <<
+            employee1.getAge() << " years old. " << endl;
+
+    //test the promotion
+    employee1.askForPromotion();
+    employee1.askForPromotion();
     return 0;
 }
